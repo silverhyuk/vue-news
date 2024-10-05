@@ -1,27 +1,28 @@
 <template>
-    <div>
+    <ul class="jobs-item">
         <!-- jobs 리스트를 그려줌 -->
-        <div v-for="item in jobs" :key="item.id">
-            <section class="item-container">
-                <div class="title-container">
+        <li v-for="item in jobs" :key="item.id" class="post">
+            <!-- 포인트 영역 -->
+            <div class="points">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+
+            <!-- 기타 정보 영역 -->
+            <div class="job-title">
+                <p class="title">
                     <a :href="item.url" target="_blank">{{ item.title }}</a>
-                </div>
-                <div class="time-container">
+                </p>
+                <small class="user-info">
                     <i class="fa-solid fa-clock"></i>
                     {{ item.time_ago }} 
-                </div>
-
-                <div class="domain-container" v-if="item.domain">
-                    <i class="fa-solid fa-building"></i>
-                    {{ item.domain }}
-                </div>
-            </section>
-        </div>
-         <!-- <p v-for="item in jobs" :key="item.id">
-            <a :href="item.url" target="_blank">{{ item.title }}</a>
-            <small>{{ item.time_ago }} | {{ item.domain }}</small>
-         </p> -->
-    </div>
+                    <div v-if="item.domain">
+                        <i class="fa-solid fa-building"></i>
+                        {{ item.domain }}
+                    </div>
+                </small>
+            </div>
+        </li>
+    </ul>
 </template>
 
 <script>
@@ -39,45 +40,42 @@ export default {
 }
 </script>
 
-<style>
-.item-container {
+<style scoped>
+.jobs-item {
+  margin: 0;
+  padding: 0;
+}
+.job-title {
+    padding-left: 8px;
+    align-items: center;
+}
+.post {
+  list-style: none;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  margin: 1rem;
-  width: 98%;
-  background-color: #f8f8f8;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  border-bottom: 1px solid #e0e0e0;
+  margin-top: 10px;
 }
-.title-container {
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 0.5rem;
-  text-align: center;
-}
-
-.domain-container {
-  padding: 0.5rem;
+.points {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 0.7rem;
-  display: flex;
-  align-items: center;
+  color: #42b883;
 }
-.time-container {
-  padding: 0.5rem;
-  font-size: 0.7rem;
-  display: flex;
-  align-items: center;
+.title {
+    margin: 0;
+    display: flex;
+    align-items: center;
 }
-.comments-count {
-  font-size: 0.7rem;
-  padding-left: 0.5rem;
-  display: flex;
-  align-items: center;
-  color: #828282;
+.user-info {
+    color: #828282;
+    font-size: 0.7rem;
+    padding-left: 8px;
+    display: flex;
+    align-items: center;
 }
 .fa-building {
   font-size: 0.7rem;
@@ -88,5 +86,9 @@ export default {
   font-size: 0.7rem;
   margin-right: 0.2rem;
   margin-left: 0.2rem;
+}
+.fa-bolt {
+    color: #f2c61f;
+    padding-right: 0.5rem;
 }
 </style>

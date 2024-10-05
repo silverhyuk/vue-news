@@ -1,26 +1,31 @@
 <template>
-    <div>   
-        <div v-for="item in asks" :key="item.id">
-            <section class="item-container">
-                <div class="title-container">
+    <ul class="ask-item">   
+
+        <li v-for="item in asks" :key="item.id" class="post">
+            <!-- 포인트 영역 -->
+            <div class="points">
+                <i class="fa-solid fa-star"></i>
+                {{ item.points }}
+            </div>
+
+            <!-- 기타 정보 영역 -->
+             <div>
+                <p class="ask-title">
                     <router-link :to="`/item/${item.id}`">{{ item.title }}</router-link>
-                </div>
-                <div class="time-container">
-                    <small>{{ item.time_ago }}</small>
-                </div>
-                <div class="user-container">
+                </p>
+                <small class="user-info">
+                    <i class="fa-solid fa-clock"></i>
+                    {{ item.time_ago }} 
                     <router-link :to="`/user/${item.user}`">
                         <i class="fa-solid fa-user"></i>
                         {{ item.user }}
                     </router-link>
-                </div>
-                <div class="comments-count">
                     <i class="fa-solid fa-comment"></i>
                     {{ item.comments_count }}
-                </div>
-            </section>
-        </div>
-    </div>
+                </small>    
+             </div>
+        </li>
+    </ul>
 </template>
 
 <script>
@@ -40,45 +45,57 @@ export default {
 </script>
 
 <style scoped>
-.item-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  margin: 1rem;
-  width: 98%;
-  background-color: #f8f8f8;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.ask-item {
+  margin: 0;
+  padding: 0;
 }
-.title-container {
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 0.5rem;
-  text-align: center;
+.post {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+.points {
+  width: 80px;
+  height: 60px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: #42b883;
 }
 
-.user-container {
-  padding: 0.5rem;
+.ask-title {
+  margin: 0;
+}
+.user-info {
+  color: #828282;
   font-size: 0.7rem;
+  padding-left: 8px;
   display: flex;
   align-items: center;
 }
-.time-container {
-  padding: 0.5rem;
+.fa-clock {
+  padding-right: 0.2rem;
+  padding-left: 0.5rem;
+  font-size: 0.5rem;
+}
+.fa-user {
+  padding-right: 0.2rem;
+  padding-left: 0.5rem;
+  font-size: 0.5rem;
+}
+.fa-star {
+  color: #f2c61f;
+  padding-right: 0.5rem;
   font-size: 0.7rem;
-  display: flex;
-  align-items: center;
+}
+.fa-comment {
+  padding-right: 0.2rem;
+  padding-left: 0.5rem;
+  font-size: 0.5rem;
 }
 .comments-count {
-  font-size: 0.7rem;
-  padding-left: 0.5rem;
-  display: flex;
-  align-items: center;
-  color: #828282;
+  padding-left: 8px;
 }
-
-
 </style>

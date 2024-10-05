@@ -4,7 +4,7 @@
       <section>
         <!-- 질문 작성자 정보 -->
         <div class="user-container">
-          <div><i class="fa-solid fa-user"></i></div>
+          <div><i class="fa-solid fa-user main"></i></div>
           <div class="user-description">
             <router-link :to="`/user/${item.user}`">
               {{ item.user }}
@@ -17,6 +17,7 @@
         </div>
       </section>
 
+      <!-- 제목 -->
       <section>
         <div class="title">
            {{ item.title }}
@@ -36,22 +37,27 @@
         </div>
       </section>
 
-      <section>
-        <h2>댓글</h2>
-        <div v-for="comment in item.comments" :key="comment.id">
+      <!-- 댓글 -->
+      <div>
+        <p class="comment-header">댓글</p>
+        <ul class="comment-item">
+          <li v-for="comment in item.comments" :key="comment.id" class="comment-post">
           <div class="comment-container">
-            <div class="comment-author">
+            <small class="user-info">
+              <i class="fa-solid fa-user"></i>
               <router-link :to="`/user/${comment.user}`">
                 {{ comment.user }}
               </router-link>
-            </div>
-            <div class="comment-time">
+              <i class="fa-solid fa-clock"></i>
               {{ comment.time_ago }}
-            </div>
-            <div class="comment-content" v-html="comment.content"></div>
+            </small>
+            <p class="comment-content" v-html="comment.content"></p>
           </div>
-        </div>
-      </section>
+        </li> 
+        </ul>
+       
+      </div>
+
 
     </div>
   </div>
@@ -80,7 +86,30 @@ export default {
   align-items: center;
   padding: 0.5rem;
 }
-.fa-user {
+
+.comment-header {
+  display: flex;
+  margin-left: 10px;
+}
+
+.comment-item {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.comment-post {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+
+
+
+.fa-user.main{
   font-size: 2.5rem;
 }
 .fa-clock {
@@ -98,6 +127,22 @@ export default {
   margin-right: 0.2rem;
   margin-left: 0.2rem;
 }
+.fa-clock {
+  padding-right: 0.2rem;
+  padding-left: 0.5rem;
+  font-size: 0.5rem;
+}
+.fa-user {
+  padding-right: 0.2rem;
+  font-size: 0.5rem;
+}
+.fa-star {
+  color: #f2c61f;
+  padding-right: 0.5rem;
+  font-size: 0.7rem;
+}
+
+
 .user-description {
   padding-left: 8px;
   color: #828282;
@@ -115,14 +160,7 @@ export default {
   color: #345;
   padding: 0.5rem;
 }
-.sub-info {
-  font-size: 0.7rem;
-  color: #828282;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
 .content {
   margin-top: 0.5rem;
   white-space: pre-wrap;
@@ -134,30 +172,7 @@ export default {
   color: #345;
   line-height: 1.5;
 }
-.comment-container {
-  padding: 0.5rem;
-  border-top: 1px solid #e6e6e6;
-  word-break: break-all;
-  padding-bottom: 1rem;
-  font-size: 1.1rem;
-  color: #345;
-  line-height: 1.5;
-}
-.comment-author {
-  font-size: 0.8rem;
-  color: #345;
-  margin-bottom: 0.5rem;
-}
-.comment-time {
-  font-size: 0.7rem;
-  color: #828282;
-  margin-bottom: 0.5rem;
-}
-.comment-content {
-  font-size: 1.1rem;
-  color: #345;
-  line-height: 1.5;
-}
+
 .title {
   font-size: 1.5rem;
   margin: 0;

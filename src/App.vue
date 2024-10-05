@@ -39,4 +39,16 @@ export default {
 .page-enter, .page-leave-to {
   opacity: 0;
 }
+a {
+  color: #3498db;
+  text-decoration: none;
+}
+a.router-link-exact-active {
+  color: #42b983;
+  text-decoration: underline;
+}
+a:hover {
+  color: #42b983;
+  text-decoration: underline;
+}
 </style>

@@ -1,15 +1,22 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <tool-bar />
+    <router-view v-slot="{ Component }">
+      <transition name="page">
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import ToolBar from '@/components/ToolBar.vue'
+import { RouterView } from 'vue-router'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    ToolBar,
+    RouterView
   }
 }
 </script>
@@ -22,5 +29,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  padding: 0;
+  margin: 0;
+}
+/* router transition */
+.page-enter-active, .page-leave-active {
+  transition: opacity 0.3s;
+}
+.page-enter, .page-leave-to {
+  opacity: 0;
 }
 </style>

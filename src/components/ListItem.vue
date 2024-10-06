@@ -4,9 +4,12 @@
             <li v-for="item in listItems" :key="item.id" class="post">
                 <!-- 포인트 영역 -->
                 <div class="points">
-                    <i class="fa-solid fa-star"></i>
                     <span v-if="item.points">
+                        <i class="fa-solid fa-star"></i>
                         {{ item.points }}
+                    </span>
+                    <span v-else>
+                        <i class="fa-solid fa-cloud"></i>
                     </span>
                 </div>
 
@@ -114,6 +117,11 @@ export default {
 }
 .fa-star {
   color: #f2c61f;
+  padding-right: 0.5rem;
+  font-size: 0.7rem;
+}
+.fa-cloud {
+  color: #1faff2;
   padding-right: 0.5rem;
   font-size: 0.7rem;
 }

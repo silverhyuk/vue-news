@@ -3,18 +3,17 @@
     <div v-if="item">
       <section>
         <!-- 질문 작성자 정보 -->
-        <div class="user-container">
-          <div><i class="fa-solid fa-user main"></i></div>
-          <div class="user-description">
+        <user-profile :info="item">
+          <template v-slot:username>
             <router-link :to="`/user/${item.user}`">
               {{ item.user }}
             </router-link>
-            <div class="time">
-              <i class="fa-solid fa-clock"></i>
-              {{ item.time_ago }}
-            </div>
-          </div>
-        </div>
+          </template>
+          <template v-slot:time>
+            <i class="fa-solid fa-clock"></i>
+            {{ 'Posted ' + item.time_ago }}
+          </template>
+        </user-profile>
       </section>
 
       <!-- 제목 -->
@@ -65,9 +64,12 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
+import UserProfile from '@/components/UserProfile'
 export default {
   name: 'ItemView',
+  components: {
+    UserProfile
+  },
   computed: {
     ...mapGetters(['item'])
   },
@@ -139,6 +141,8 @@ export default {
 .fa-star {
   color: #f2c61f;
   padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
   font-size: 0.7rem;
 }
 

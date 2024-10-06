@@ -3,17 +3,26 @@ import { fetchNewsList, fetchAskList, fetchJobsList, fetchUserInfo, fetchComment
 export const actions = {
     FETCH_NEWS({ commit }) {
         fetchNewsList()
-            .then(response => commit('SET_NEWS', response.data))
+            .then(response => {
+                commit('SET_NEWS', response.data)
+                return response
+            })
             .catch(error => console.log(error))
     },
     FETCH_ASK({ commit }) {
         fetchAskList()
-            .then(response => commit('SET_ASK', response.data))
+            .then(response => {
+                commit('SET_ASK', response.data)
+                return response
+            })
             .catch(error => console.log(error))
     },
     FETCH_JOBS({ commit }) {
         fetchJobsList()
-            .then(response => commit('SET_JOBS', response.data))
+            .then(response => {
+                commit('SET_JOBS', response.data)
+                return response
+            })
             .catch(error => console.log(error))
     },
     FETCH_USER({ commit }, username) {

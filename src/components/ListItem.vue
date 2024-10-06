@@ -45,17 +45,9 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
-    created() {
-        if(this.$route.name === 'news') {
-            this.FETCH_NEWS()
-        } else if(this.$route.name === 'ask') {
-            this.FETCH_ASK()
-        } else if(this.$route.name === 'jobs') {
-            this.FETCH_JOBS()
-        }
-    },
+
     computed: {
         ...mapGetters(['news', 'asks', 'jobs']),
         listItems() {
@@ -68,9 +60,7 @@ export default {
             }
         }
     },
-    methods: {
-        ...mapActions(['FETCH_NEWS', 'FETCH_ASK', 'FETCH_JOBS'])
-    }
+
 
 }
 </script>

@@ -49,15 +49,9 @@ import { mapGetters } from 'vuex';
 export default {
 
     computed: {
-        ...mapGetters(['news', 'asks', 'jobs']),
+        ...mapGetters(['list']),
         listItems() {
-            if(this.$route.name === 'news') {
-                return this.news
-            } else if(this.$route.name === 'ask') {
-                return this.asks
-            } else if(this.$route.name === 'jobs') {
-                return this.jobs
-            }
+          return this.list
         }
     },
 
